@@ -33,7 +33,7 @@ if [ $3 = 'y' ]; then
 fi
 
 # install MySQL-python
-Ñif [ $4 = 'y' ]; then
+if [ $4 = 'y' ]; then
   pip install MySQL-python
 fi
 
@@ -44,7 +44,7 @@ pip install gunicorn
 pip install setproctitle
 
 # install gevent library to enable async gunicorn workers
-pip install gevent
+# pip install gevent
 
 # create a folder for log files
 mkdir logs

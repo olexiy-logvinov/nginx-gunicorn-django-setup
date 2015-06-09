@@ -31,7 +31,7 @@ useradd --system --gid webapps --shell /bin/bash --home /webapps/${projectName}_
 # create and activate an environment for a new application
 mkdir -p /webapps/${projectName}_django
 chown $userName /webapps/${projectName}_django
-chown -R ${userName}:users /webapps/${projectName}_django
+chown -R ${userName}:webapps /webapps/${projectName}_django
 # give write permissions to group
 chmod -R g+w /webapps/${projectName}_django
 
@@ -62,7 +62,7 @@ sed -i -e "s/hello/$projectName/g" /etc/supervisor/conf.d/${projectName}.conf
 sed -i -e "s/username/$userName/g" /etc/supervisor/conf.d/${projectName}.conf
 
 
-# ask supervisor to reread configuration files and update (this will start your the newly registered app)
+# ask supervisor to reread configuration files and update (this will start your newly registered app)
 supervisorctl reread
 supervisorctl update
 
@@ -79,7 +79,7 @@ ln -s /etc/nginx/sites-available/${projectName} /etc/nginx/sites-enabled/${proje
 cp 500.html /webapps/${projectName}_django/static/500.html
 
 # once again
-chown -R ${userName}:users /webapps/${projectName}_django
+chown -R ${userName}:webapps /webapps/${projectName}_django
 
 echo "###########"
 echo "End of new-project.sh"

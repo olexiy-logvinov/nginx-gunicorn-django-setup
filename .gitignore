@@ -1,0 +1,4 @@
+*~
+*.pyc
+gunicorn-workers.py
+gworkers

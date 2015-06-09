@@ -1,10 +1,12 @@
 #!/bin/bash
 
+sudo apt-get install python-dev
+
 # install PostgreSQL database server
 sudo apt-get -y install postgresql postgresql-contrib 
 
 # install python dependencies for PostgreSQL
-sudo apt-get -y install libpq-dev python-dev
+sudo apt-get -y install libpq-dev
 
 # install mySQL
 sudo apt-get -y install mysql-server

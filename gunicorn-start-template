@@ -10,7 +10,7 @@ DJANGO_SETTINGS_MODULE=hello.settings             # which settings file should D
 DJANGO_WSGI_MODULE=hello.wsgi                     # WSGI module name
 TIMEOUT=60
 LOG_LEVEL=warning
-WORKER_CLASS=gevent
+# WORKER_CLASS=gevent
 ERROR_LOGFILE=/webapps/hello_django/logs/gunicorn-errors.log
 
 echo "Starting $NAME as `whoami`"
@@ -35,5 +35,5 @@ exec ../bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
   --log-level=$LOG_LEVEL \
   --log-file=- \
   --timeout $TIMEOUT \
-  --worker-class $WORKER_CLASS \
+#  --worker-class $WORKER_CLASS \
   --error-logfile $ERROR_LOGFILE
