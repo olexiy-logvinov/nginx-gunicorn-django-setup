@@ -21,6 +21,10 @@ supervisorctl stop $projectName
 # Remove the application from Supervisor’s control scripts directory
 rm /etc/supervisor/conf.d/${projectName}.conf
 
+# Reread conf and update supervisor
+supervisorctl reread
+supervisorctl update
+
 # Remove project directory from /webapps
 rm -r /webapps/${projectName}_django
 
