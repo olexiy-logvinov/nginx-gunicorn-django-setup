@@ -1,8 +1,8 @@
 #!/bin/bash
  
 NAME="hello_app"                                  # Name of the application
-DJANGODIR=/webapps/hello_django/hello             # Django project directory
-SOCKFILE=/webapps/hello_django/run/gunicorn.sock  # we will communicte using this unix socket
+DJANGODIR=/webapps/hello/hello             # Django project directory
+SOCKFILE=/webapps/hello/run/gunicorn.sock  # we will communicte using this unix socket
 USER=username                                        # the user to run as
 GROUP=webapps                                     # the group to run as
 NUM_WORKERS=num_cpu_cores                             # how many worker processes should Gunicorn spawn
@@ -11,7 +11,7 @@ DJANGO_WSGI_MODULE=hello.wsgi                     # WSGI module name
 TIMEOUT=60
 LOG_LEVEL=warning
 # WORKER_CLASS=gevent
-ERROR_LOGFILE=/webapps/hello_django/logs/gunicorn-errors.log
+ERROR_LOGFILE=/webapps/hello/logs/gunicorn-errors.log
 
 echo "Starting $NAME as `whoami`"
  

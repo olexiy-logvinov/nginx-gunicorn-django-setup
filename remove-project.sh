@@ -26,7 +26,7 @@ supervisorctl reread
 supervisorctl update
 
 # Remove project directory from /webapps
-rm -r /webapps/${projectName}_django
+rm -r /webapps/${projectName}
 
 # Remove user
 userdel $userName
