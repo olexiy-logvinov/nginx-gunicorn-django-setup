@@ -30,6 +30,10 @@ useradd --system --gid webapps --shell /bin/bash --home /webapps/${virtualenv} $
 
 # create and activate an environment for a new application
 mkdir -p /webapps/${virtualenv}
+
+# copy files that new user will need in home dir
+cp git-post-receive-hook /webapps/$virtualenv/
+
 #chown $userName /webapps/${virtualenv}
 chown -R ${userName}:webapps /webapps/${virtualenv}
 # give write permissions to group
@@ -46,6 +50,8 @@ sudo -u $userName ./user-works-git.sh $virtualenv
 cp gunicorn-start-template /webapps/${virtualenv}/bin/gunicorn_start
 sed -i -e "s/hello/$virtualenv/g" /webapps/${virtualenv}/bin/gunicorn_start
 sed -i -e "s/username/$userName/g" /webapps/${virtualenv}/bin/gunicorn_start
+# ATTENTION! replace 'ukroppen' with your actual app's name
+sed -i -e "s/my_app/$ukroppen/g" /webapps/${virtualenv}/bin/gunicorn_start
 
 # TODO - calculate number of gunicorn workers
 # http://stackoverflow.com/questions/14735366/cannot-assign-the-output-of-python-v-to-a-variable-in-bash
@@ -60,7 +66,6 @@ chmod u+x /webapps/${virtualenv}/bin/gunicorn_start
 cp supervisor-template.conf /etc/supervisor/conf.d/${virtualenv}.conf
 sed -i -e "s/hello/$virtualenv/g" /etc/supervisor/conf.d/${virtualenv}.conf
 sed -i -e "s/username/$userName/g" /etc/supervisor/conf.d/${virtualenv}.conf
-
 
 # create a new nginx server configuration file for your Django application running on example.com
 cp nginx-template.conf /etc/nginx/sites-available/${virtualenv}

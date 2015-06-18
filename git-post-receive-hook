@@ -1,0 +1,15 @@
+#!/bin/bash
+git --work-tree=/webapps/hello/repo --git-dir=/webapps/hello/bare checkout -f
+
+# activate virtualenv
+source /webapps/hello/bin/activate
+
+cd /webapps/hello/repo
+pip install -r requirements.txt
+
+cd ukroppen
+python manage.py migrate
+python manage.py compilemessages
+python manage.py collectstatic --noinput
+
+sudo supervisorctl restart hello

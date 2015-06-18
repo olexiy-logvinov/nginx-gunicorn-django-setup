@@ -25,10 +25,6 @@ less .ssh/id_rsa.pub
 # install requirements
 #pip install -r requirements.txt
 
-# create media and static dirs
-mkdir media
-#mkdir static
-
 # create a folder for log files
 mkdir logs
 
@@ -37,5 +33,22 @@ touch logs/gunicorn_supervisor.log
 touch logs/nginx-access.log
 touch logs/nginx-error.log
 touch logs/gunicorn-errors.log
+
+mkdir repo
+
+# create media and static dirs
+mkdir repo/media
+mkdir repo/static
+mkdir repo/cookies
+
+# initialize an empty git repo in bare
+mkdir bare
+cd bare
+git init --bare
+
+# move post receive hook from home dir to hooks dir and rename to 'post-receive'
+mv ~/git-post-receive-hook ~/bare/hooks/post-receive
+# make it executable
+chmod +x ~/bare/hooks/post-receive
 
 deactivate
