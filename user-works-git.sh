@@ -47,8 +47,8 @@ cd bare
 git init --bare
 
 # move post receive hook from home dir to hooks dir and rename to 'post-receive'
-mv ~/git-post-receive-hook ~/bare/hooks/post-receive
+mv /webapps/${1}/git-post-receive-hook /webapps/${1}/bare/hooks/post-receive
 # make it executable
-chmod +x ~/bare/hooks/post-receive
+chmod +x /webapps/${1}/bare/hooks/post-receive
 
 deactivate
