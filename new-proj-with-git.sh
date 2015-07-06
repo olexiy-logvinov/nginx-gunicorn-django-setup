@@ -77,7 +77,7 @@ sed -i -e "s/example.com/$domainName/g" /etc/nginx/sites-available/${virtualenv}
 ln -s /etc/nginx/sites-available/${virtualenv} /etc/nginx/sites-enabled/${virtualenv}
 
 # copy html error pages templates to static folder
-cp 500.html /webapps/${virtualenv}/static/500.html
+cp 500.html /webapps/repo/${virtualenv}/static/500.html
 
 # once again
 chown -R ${userName}:webapps /webapps/${virtualenv}
@@ -90,6 +90,6 @@ chown -R ${userName}:webapps /webapps/${virtualenv}
 
 echo "###########"
 echo "The End!"
-echo "Now your should create a database for your Django app and edit settings.py"
+echo "Now you should create a database for your Django app and edit settings.py"
 #echo "Then run sudo -u ${userName} supervisorctl start ${virtualenv}"
 echo "Then run supervisorctl reread, supervisorctl update, service nginx restart"
