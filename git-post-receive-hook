@@ -7,9 +7,12 @@ source /webapps/hello/bin/activate
 cd /webapps/hello/repo
 pip install -r requirements.txt
 
+# replace ukroptest with ut01(for staging) or ukroppen(for production)
+find . -type f -name "*" -exec sed -i "s/ukroptest_django/ut01/g" "{}" \;
+find . -type f -name "*" -exec sed -i "s/ukroptest/ut01/g" "{}" \;
 cd ukroppen
-python manage.py migrate
-python manage.py compilemessages
-python manage.py collectstatic --noinput
+#python manage.py migrate
+#python manage.py compilemessages
+#python manage.py collectstatic --noinput
 
-sudo supervisorctl restart hello
+#sudo supervisorctl restart hello

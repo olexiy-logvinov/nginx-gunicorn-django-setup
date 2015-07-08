@@ -11,19 +11,15 @@ virtualenv .
 source bin/activate
 
 # create an SSH key
-ssh-keygen
+#ssh-keygen
 
 # show ssh key - copy and add to bitbucket
-less .ssh/id_rsa.pub
+#less .ssh/id_rsa.pub
 
-# clone a repo
-#echo 'please enter your repo ssh url'
-# example git@bitbucket.org:bavovna/ukroppen.git
-#read repoUrl
-#git clone $repoUrl
-
-# install requirements
-#pip install -r requirements.txt
+# create authorized_keys file where public key from our development environment will be stored
+touch .ssh/authorized_keys
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
 
 # create a folder for log files
 mkdir logs
@@ -48,6 +44,8 @@ git init --bare
 
 # move post receive hook from home dir to hooks dir and rename to 'post-receive'
 mv /webapps/${1}/git-post-receive-hook /webapps/${1}/bare/hooks/post-receive
+# replace 'hello' with actual project name
+sed -i -e "s/hello/${1}/g" /webapps/${1}/bare/hooks/post-receive
 # make it executable
 chmod +x /webapps/${1}/bare/hooks/post-receive
 

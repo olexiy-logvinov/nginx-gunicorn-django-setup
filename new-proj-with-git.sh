@@ -18,6 +18,9 @@ read domainName
 echo 'please enter a username for a new user (no spaces please):'
 read userName
 
+echo 'Django app name:'
+read djangoAppName
+
 #echo 'would you like pip to use a requirements.txt file to install specific version of packages? y/n'
 #read pipRequirements
 
@@ -51,7 +54,7 @@ cp gunicorn-start-template /webapps/${virtualenv}/bin/gunicorn_start
 sed -i -e "s/hello/$virtualenv/g" /webapps/${virtualenv}/bin/gunicorn_start
 sed -i -e "s/username/$userName/g" /webapps/${virtualenv}/bin/gunicorn_start
 # ATTENTION! replace 'ukroppen' with your actual app's name
-sed -i -e "s/my_app/$ukroppen/g" /webapps/${virtualenv}/bin/gunicorn_start
+sed -i -e "s/my_app/$djangoAppName/g" /webapps/${virtualenv}/bin/gunicorn_start
 
 # TODO - calculate number of gunicorn workers
 # http://stackoverflow.com/questions/14735366/cannot-assign-the-output-of-python-v-to-a-variable-in-bash
