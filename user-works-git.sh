@@ -5,10 +5,21 @@
 # second - pip requirements (y/n)
 
 cd /webapps/${1}
-virtualenv .
+
+if [ "$3" = 3 ]
+  then
+    virtualenv -p python3 env
+  else
+    virtualenv env
+fi
 
 # enter (activate) the virtual environment
-source bin/activate
+source env/bin/activate
+
+pip install -r requirements.txt
+
+# we don't have Gunicorn in dev environment, so install Gunicorn now
+pip install gunicorn
 
 # create an SSH key
 #ssh-keygen
@@ -17,6 +28,7 @@ source bin/activate
 #less .ssh/id_rsa.pub
 
 # create authorized_keys file where public key from our development environment will be stored
+mkdir .ssh
 touch .ssh/authorized_keys
 chmod 700 .ssh
 chmod 600 .ssh/authorized_keys
@@ -33,11 +45,17 @@ touch logs/gunicorn-errors.log
 mkdir repo
 
 # create media and static dirs
-mkdir repo/media
-mkdir repo/static
-mkdir repo/cookies
+mkdir media
+mkdir static
+mkdir cookies
+
+# create new django project
+mkdir repo/${2}
+#cd repo/${2}
+#django-admin.py startproject ${2}
 
 # initialize an empty git repo in bare
+cd /webapps/${1}
 mkdir bare
 cd bare
 git init --bare

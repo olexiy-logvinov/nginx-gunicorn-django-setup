@@ -2,15 +2,16 @@
 git --work-tree=/webapps/hello/repo --git-dir=/webapps/hello/bare checkout -f
 
 # activate virtualenv
-source /webapps/hello/bin/activate
+source /webapps/hello/env/bin/activate
 
 cd /webapps/hello/repo
 pip install -r requirements.txt
 
-# replace ukroptest with ut01(for staging) or ukroppen(for production)
-find . -type f -name "*" -exec sed -i "s/ukroptest_django/ut01/g" "{}" \;
-find . -type f -name "*" -exec sed -i "s/ukroptest/ut01/g" "{}" \;
-cd ukroppen
+# replace ukroptest_django with staging or ukroppen production env name
+find . -type f -name "*" -exec sed -i "s/ukroptest_django/hello/g" "{}" \;
+find . -type f -name "*" -exec sed -i "s/ukroptest/hello/g" "{}" \;
+find . -type f -name "*" -exec sed -i "s/ukroppen_django/hello/g" "{}" \;
+#cd ukroppen
 #python manage.py migrate
 #python manage.py compilemessages
 #python manage.py collectstatic --noinput

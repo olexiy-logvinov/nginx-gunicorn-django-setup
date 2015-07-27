@@ -1,0 +1,24 @@
+# system-wide settings are in /etc/nanorc
+
+## Use auto-indentation.
+set autoindent
+## Don't display the helpful shortcut lists at the bottom of the screen.
+set nohelp
+## Don't add newlines to the ends of files.
+set nonewlines
+## Don't wrap text at all.
+set nowrap
+set smarthome
+## Use smooth scrolling as the default.
+set smooth
+## Allow nano to be suspended.
+set suspend
+## Use this tab size instead of the default; it must be greater than 0.
+set tabsize 4
+## Convert typed tabs to spaces.
+set tabstospaces
+## Enable the new (EXPERIMENTAL) generic undo code, not just for line cuts
+set undo
+## Enable soft line wrapping (AKA full line display)
+set softwrap
+
